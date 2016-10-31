@@ -19,7 +19,8 @@
 
 - name: configure the docker repository
   hosts: dockerrepos
-  remote_user: root
+  remote_user: stack
+  become: true
   roles:
     - dockerrepo
 

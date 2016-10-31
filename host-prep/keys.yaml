@@ -9,5 +9,5 @@
   - name: create .ssh
     file: path=/home/stack/.ssh state=directory
   - name: distribute key
-    copy: src=/home/madgin/.ssh/id_rsa.openstack.pub dest=/home/stack/.ssh/authorized_hosts
+    copy: src=/home/madgin/.ssh/id_rsa.openstack.pub dest=/home/stack/.ssh/authorized_keys
 

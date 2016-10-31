@@ -40,7 +40,7 @@
   apt: name=lxc state=absent
 
 - name: Install Docker python libraries
-  pip: name=docker-py
+  pip: name=docker-py version=1.9.0
 
 - name: Install ntp
   apt: name=ntp
