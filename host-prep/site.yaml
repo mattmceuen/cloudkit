@@ -1,0 +1,26 @@
+---
+# This playbook configures an ubuntu base system for kubernetes deployment
+
+- name: configure nodes with standard networking
+  hosts: nonnetworknodes
+  remote_user: stack
+  become: true
+  roles:
+    - common
+#    - nonnetworknode
+
+- name: configure nodes with extra networking interfaces
+  hosts: networknodes
+  remote_user: stack
+  become: true
+  roles:
+    - common
+#    - networknode
+
+#- name: configure the docker repository
+#  hosts: dockerrepos
+#  remote_user: root
+#  roles:
+#    - dockerrepo
+
+
