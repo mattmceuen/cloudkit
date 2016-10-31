@@ -1,0 +1,13 @@
+---
+# This playbook distributes keys to hosts
+
+- name: copy key
+  hosts: all
+  remote_user: stack
+  become: true
+  tasks:
+  - name: create .ssh
+    file: path=/home/stack/.ssh state=directory
+  - name: distribute key
+    copy: src=/home/madgin/.ssh/id_rsa.openstack.pub dest=/home/stack/.ssh/authorized_keys
+
