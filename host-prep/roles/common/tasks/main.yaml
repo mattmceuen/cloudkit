@@ -1,0 +1,65 @@
+---
+# Installation type setup across all nodes, mostly from Kolla quick start
+# guide
+
+- name: Install python-pip
+  apt: name=python-pip
+
+- name: Upgrade pip
+  pip: name=pip
+
+- name: Install python-dev
+  apt: name=python-dev
+
+- name: Install libffi-dev
+  apt: name=libffi-dev
+
+- name: Install gcc
+  apt: name=gcc
+
+- name: Install libssl-dev
+  apt: name=libssl-dev
+
+- name: Install latest docker
+  shell: curl -sSL https://get.docker.io | bash
+
+- name: Make the drop-in unit directory for docker.service
+  file: path=/etc/systemd/system/docker.service.d state=directory
+- name: Create the drop-in unit file
+  copy: src=kolla.conf dest=/etc/systemd/system/docker.service.d
+
+- name: Reload daemons
+  shell: systemctl daemon-reload
+
+- name: Restart docker
+  shell: systemctl restart docker
+
+- name: Uninstall Ubuntu 16.04 lxd
+  apt: name=lxd state=absent
+- name: Uninstall Ubuntu 16.04 lxc
+  apt: name=lxc state=absent
+
+- name: Install Docker python libraries
+  pip: name=docker-py
+
+- name: Install ntp
+  apt: name=ntp
+
+- name: Disable libvirt
+  shell: service libvirt-bin stop; update-rc.d libvirt-bin disable
+
+- name: Install ansible
+  pip: name=ansible
+
+- name: Install Openstack client
+  pip: name=python-openstackclient
+- name: Install Neutron client
+  pip: name=python-neutronclient
+
+- name: Install vim
+  apt: name=vim
+
+
+
+
+

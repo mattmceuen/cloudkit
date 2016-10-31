@@ -1,0 +1,10 @@
+[dockerrepos]
+kittencloud-01
+
+[networknodes]
+kittencloud-01
+
+[nonnetworknodes]
+kittencloud-03
+
+

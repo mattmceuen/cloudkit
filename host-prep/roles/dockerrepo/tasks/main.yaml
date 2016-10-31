@@ -1,0 +1,9 @@
+---
+# Set up a local docker registry on the first node
+- name: Start the registry container
+  docker_container:
+    name: registry
+    image: registry:2
+    ports: 
+      - "4000:5000"
+    restart_policy: always
