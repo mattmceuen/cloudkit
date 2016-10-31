@@ -17,10 +17,10 @@
     - common
 #    - networknode
 
-#- name: configure the docker repository
-#  hosts: dockerrepos
-#  remote_user: root
-#  roles:
-#    - dockerrepo
+- name: configure the docker repository
+  hosts: dockerrepos
+  remote_user: root
+  roles:
+    - dockerrepo
 
 

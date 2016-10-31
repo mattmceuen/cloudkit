@@ -26,7 +26,7 @@
 - name: Make the drop-in unit directory for docker.service
   file: path=/etc/systemd/system/docker.service.d state=directory
 - name: Create the drop-in unit file
-  copy: src=kolla.conf dest=/etc/systemd/system/docker.service.d
+  copy: src=kolla.conf dest=/etc/systemd/system/docker.service.d/
 
 - name: Reload daemons
   shell: systemctl daemon-reload
@@ -59,6 +59,12 @@
 - name: Install vim
   apt: name=vim
 
+- name: Tell docker it will be communicating with an insecure repo
+  shell: echo 'DOCKER_OPTS="--insecure-registry {{ registry_host }}:4000"' | cat >> /etc/default/docker
+- name: Add EnvironmentFile and DOCKER_OPTS to docker.service
+  copy: src=docker.service dest=/etc/systemd/system/
+- name: Restart docker
+  shell: service docker restart
 
 
 
