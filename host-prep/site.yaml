@@ -7,7 +7,7 @@
   become: true
   roles:
     - common
-#    - nonnetworknode
+    - nonnetworknode
 
 - name: configure nodes with extra networking interfaces
   hosts: networknodes
@@ -15,7 +15,7 @@
   become: true
   roles:
     - common
-#    - networknode
+    - networknode
 
 - name: configure the docker repository
   hosts: dockerrepos
