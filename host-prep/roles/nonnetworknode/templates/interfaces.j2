@@ -9,11 +9,15 @@ iface lo inet loopback
 
 # The primary network interface
 auto {{ public_interface }}
-iface {{ public_interface }} inet dhcp
+iface {{ public_interface }} inet static
+    address {{ public_address }}
+    broadcast {{ public_netmask }}
+    gateway {{ public_gateway }}
+    dns-nameservers {{ dns_server_1 }}
+    dns-nameservers {{ dns_server_2 }}
 
 auto {{ private_interface }}
 iface {{ private_interface }} inet static
     address {{ private_address }}
     broadcast {{ private_netmask }}
 
-# TODO: find details for unconfigured network interface

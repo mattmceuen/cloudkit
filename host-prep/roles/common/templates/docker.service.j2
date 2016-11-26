@@ -33,6 +33,9 @@ KillMode=process
 # as directed buy Kolla Multinode Quickstart
 EnvironmentFile=-/etc/default/docker
 ExecStart=/usr/bin/docker daemon -H fd:// $DOCKER_OPTS
+# Needed for Kuryr:
+#ExecStart=/usr/bin/docker daemon -H fd:// $DOCKER_OPTS tcp://{{ etcd_host }}:2375 -H unix:///var/run/docker.sock --cluster-store=etcd://{{ etcd_host }}:2379 --cluster-advertise={{ etcd_host }}:2375
+ExecStart= -H tcp://{{ etcd_host }}:2375 -H unix:///var/run/docker.sock --cluster-store=etcd://{{ etcd_host }}:2379 --cluster-advertise={{ etcd_host }}:2375
 #ExecStart=/usr/bin/dockerd -H fd://
 
 [Install]

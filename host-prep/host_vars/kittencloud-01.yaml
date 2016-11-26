@@ -2,5 +2,7 @@
 hostname: kittencloud-01
 public_interface: enp0s3
 private_interface: enp0s8
-private_address: 192.168.60.10
+router_interface: enp0s9
+public_address: 192.168.0.151
+private_address: 192.168.60.11
 private_netmask: 255.255.255.0

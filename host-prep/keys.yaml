@@ -3,11 +3,11 @@
 
 - name: copy key
   hosts: all
-  remote_user: stack
-  become: true
+  remote_user: root
+  #become: true
   tasks:
   - name: create .ssh
-    file: path=/home/stack/.ssh state=directory
+    file: path=/root/.ssh state=directory
   - name: distribute key
-    copy: src=/home/madgin/.ssh/id_rsa.openstack.pub dest=/home/stack/.ssh/authorized_keys
+    copy: src=/home/madgin/.ssh/kolla_public_keys dest=/root/.ssh/authorized_keys
 

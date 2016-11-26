@@ -59,13 +59,20 @@
 - name: Install vim
   apt: name=vim
 
-- name: Tell docker it will be communicating with an insecure repo
-  shell: echo 'DOCKER_OPTS="--insecure-registry {{ registry_host }}:4000"' | cat >> /etc/default/docker
+# This is called for by quick start butdoesn't seem to work.  Added daemon.json instead.
+#- name: Tell docker it will be communicating with an insecure repo
+#  shell: echo 'DOCKER_OPTS="--insecure-registry {{ registry_host }}:4000"' | cat >> /etc/default/docker
+- name: Configure the docker daemon file
+  template: src=docker_slash_daemon.json.j2 dest=/etc/docker/daemon.json
+  notify:
+    - restart docker
+
 - name: Add EnvironmentFile and DOCKER_OPTS to docker.service
-  copy: src=docker.service dest=/etc/systemd/system/
+  template: src=docker.service.j2 dest=/etc/systemd/system/docker.service
 - name: Restart docker
   shell: service docker restart
 
-
+- name: Disable apparmor libvirt
+  shell: apparmor_parser -R /etc/apparmor.d/usr.sbin.libvirtd
 
 

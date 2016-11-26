@@ -1,3 +1,8 @@
 ---
-registry_host: 192.168.0.150
+registry_host: 192.168.60.11
+public_gateway: 192.168.0.1
+public_netmask: 255.255.255.0
+etcd_host: 192.168.60.11
+dns_server_1: 68.94.156.9
+dns_server_2: 68.94.157.9
 
