@@ -75,4 +75,6 @@
 - name: Disable apparmor libvirt
   shell: apparmor_parser -R /etc/apparmor.d/usr.sbin.libvirtd
 
+- name: Set up hosts file
+  template: src=hosts.j2 dest=/etc/hosts
 
