@@ -1,0 +1,7 @@
+---
+- name: restart docker
+  service: name=docker state=restarted
+
+- name: restart network
+  shell: "ifdown --exclude=lo -a; sleep 1; ifup --exclude=lo -a"
+

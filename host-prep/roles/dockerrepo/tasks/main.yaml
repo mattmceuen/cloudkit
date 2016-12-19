@@ -7,3 +7,5 @@
     ports: 
       - "4000:5000"
     restart_policy: always
+    env:
+      REGISTRY_PROXY_REMOTEURL: https://registry-1.docker.io

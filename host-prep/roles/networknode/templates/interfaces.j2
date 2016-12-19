@@ -1,0 +1,28 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto {{ public_interface }}
+iface {{ public_interface }} inet static
+    address {{ public_address }}
+    broadcast {{ public_netmask }}
+    gateway {{ public_gateway }}
+    dns-nameservers {{ dns_server_1 }}
+    dns-nameservers {{ dns_server_2 }}
+
+auto {{ private_interface }}
+iface {{ private_interface }} inet static
+    address {{ private_address }}
+    broadcast {{ private_netmask }}
+
+auto {{ router_interface }}
+iface {{ router_interface}}  inet manual
+    up ifconfig $IFACE 0.0.0.0 up
+    down ifconfig $IFACE 0.0.0.0 down
+

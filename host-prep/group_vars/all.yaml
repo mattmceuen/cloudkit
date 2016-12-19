@@ -1,3 +1,15 @@
 ---
-registry_host: 192.168.0.150
-
+registry_host: 192.168.1.1
+public_gateway: 192.168.0.1
+public_netmask: 255.255.255.0
+etcd_host: 192.168.60.1
+dns_server_1: 68.94.156.9
+dns_server_2: 68.94.157.9
+host_1_ip: 192.168.0.221
+host_2_ip: 192.168.0.222
+host_3_ip: 192.168.0.223
+host_4_ip: 192.168.0.224
+host_1_name: kittencloud-01
+host_2_name: kittencloud-02
+host_3_name: kittencloud-03
+host_4_name: kittencloud-04
