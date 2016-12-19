@@ -72,8 +72,14 @@
 - name: Restart docker
   shell: service docker restart
 
-- name: Disable apparmor libvirt
+- name: Disable apparmor libvirt temporarily
   shell: apparmor_parser -R /etc/apparmor.d/usr.sbin.libvirtd
+  ignore_errors: yes
+
+- name: Disable apparmor libvirt permanently
+  command: ln -s /etc/apparmor.d/usr.sbin.libvirtd /etc/apparmor.d/disable/ 
+  args:
+    creates: /etc/apparmor.d/disable/usr.sbin.libvirtd
 
 - name: Set up hosts file
   template: src=hosts.j2 dest=/etc/hosts
